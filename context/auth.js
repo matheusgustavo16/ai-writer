@@ -2,9 +2,6 @@
 import React, { createContext, useState, useContext, useEffect, SetStateAction, Dispatch } from 'react'
 import Cookies from 'js-cookie'
 import { Magic } from "magic-sdk";
-
-import Api from '/services/Api';
-import axios from 'axios';
 import { fetchDataFromApi } from '../utils/api';
 
 const MAGIC_PUBLIC_KEY = process.env.NEXT_PUBLIC_MAGIC_PUBLIC_KEY || `pk_live_AE129A38C69F5B9A`
@@ -56,7 +53,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const login = async (email, password) => {
-        const { data: data_user } = await Api.post('/login', { email: email, senha: password })
+        /*const { data: data_user } = await Api.post('/login', { email: email, senha: password })
         //console.log('loginnndata', data_user)
         if(data_user.status){
             Cookies.set('cpyonline_token', data_user.token, { expires: 60 })
@@ -64,7 +61,7 @@ export const AuthProvider = ({ children }) => {
             return true
         }else{
             return false
-        }
+        }*/
     }
 
     const logout = () => {
@@ -105,7 +102,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const updateBalance = async(new_amount, id_user, prompt, result, discounted) => {
-        const token = Cookies.get('cpyonline_token')
+        /*const token = Cookies.get('cpyonline_token')
         const { data: data_res } = await Api.post('/update_balance', {
             token: token,
             amount: new_amount,
@@ -117,11 +114,11 @@ export const AuthProvider = ({ children }) => {
         console.log('updateBalance', data_res)
         if(data_res.status){
             setUser({ ...user, balance: data_res.balance })
-        }
+        }*/
     }
 
     const addBalance = async(add_amount, id_user, idPix) => {
-        const token = Cookies.get('cpyonline_token')
+        /*const token = Cookies.get('cpyonline_token')
         if(token && idPix){
             const { data: data_res } = await Api.post('/update_balance', {
                 token: token,
@@ -133,7 +130,7 @@ export const AuthProvider = ({ children }) => {
             if(data_res.status){
                 setUser({ ...user, balance: data_res.balance })
             }
-        }
+        }*/
     }
 
     return (
