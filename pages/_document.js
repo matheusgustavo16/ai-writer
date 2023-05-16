@@ -13,8 +13,8 @@ export default function Document() {
         <meta name="twitter:card" content="summary_large_image"></meta>
       </Head>
       <body>
-      <Main/>
-      <NextScript/>
+        <Main/>
+        <NextScript/>
       </body>
     </Html>
   )

@@ -8,11 +8,6 @@ import { useAuth } from '../context/auth'
 import axios from 'axios'
 import QRCode from "react-qr-code"
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
-import Header from '../components/Header'
-import Hero from '../components/Hero'
-import Workflow from '../components/Workflow'
-import Plans from '../components/Plans'
-import Footer from '../components/Footer'
 
 const mercadoPago = axios.create({
   baseURL: "https://api.mercadopago.com"
@@ -271,14 +266,88 @@ const Home = () => {
   return (
     <div className="root">
       <Head>
-        <title>Copy Online - Crie copys incríveis em segundos</title>
-        <meta name="description" content="Utilizando o poder da Inteligência Artificial, você pode gerar conteúdo de alta qualidade de forma rápida e eficiente." />
+        <title>Gerador de Copy</title>
       </Head>
-      <Header />
-      <Hero />
-      <Workflow />
-      <Plans />
-      <Footer />
+      <Container id="header" fluid className="py-3 bg-dark bg-opacity-10 d-flex">
+        <Container style={{ maxWidth: '1100px' }}>
+          <Row>
+            <Col sm={6} md={6} lg={6} className="d-flex" style={{ alignItems: 'center' }}>
+              <strong style={{ fontWeight: 900 }}>CopyOnline</strong>
+            </Col>
+            <Col sm={6} md={6} lg={6} className="d-flex" style={{ justifyContent: 'flex-end', alignItems: 'center' }}>
+              <Button variant="outline-dark" className="mx-3 credits" onClick={()=> setModalPlans(!modalPlans)}>
+                <Image src="/images/coin.png" className="img-fluid" />
+                <span className="m-0 p-0">{user ? user?.balance : 0}</span>
+              </Button>
+              {!isAuthenticated ?
+                <Image onClick={()=> setShowSideuser(!showSideuser)} className="avatar" src="/images/no-photo.png" />
+                : <Image onClick={()=> setShowSideuser(!showSideuser)} className="avatar" src="/images/avatar-logged.png" />}
+            </Col>
+          </Row>
+        </Container>
+      </Container>
+      <Container className="pt-5 d-flex" style={{ maxWidth: '1100px' }}>
+        <Row className="my-5">
+            <Col sm={12} md={12} lg={12} style={{ display: 'flex', flexDirection: 'row' }}>
+              <div>
+                <h1 style={{ fontWeight: 900, fontSize: '31px', letterSpacing: '-1px' }}>Crie copys incríveis em segundos com a nossa ferramenta de geração de texto baseada em IA.</h1>
+                <span className="text-muted d-block mb-4">
+                  Utilizando o poder da Inteligência Artificial, você pode gerar conteúdo de alta qualidade de forma rápida e eficiente.<br/>
+                  Experimente agora e veja como é fácil criar copys de sucesso!
+                </span>
+                <Button variant="outline-success" className="py-2 px-4">Teste Grátis</Button>
+              </div>
+              <Image src="/images/copywritter-illustration.png" className="img-fluid" style={{ maxWidth: '400px', marginLeft: '2.5em' }} />
+            </Col>
+            <Col sm={12} md={12} lg={12} className="text-center py-3">
+              <FontAwesomeIcon icon={faChevronDown} style={{ animation: 'jump 1.2s infinite' }} />
+            </Col>
+        </Row>
+      </Container>
+      <Container id="form" ref={form_div} fluid className="pb-5" style={{ maxWidth: '650px', textAlign: 'center' }}>
+        <Container className="pb-5">
+          <Row>
+            <Col sm={12} md={12} lg={12} className="d-flex" style={{ flexDirection: 'column' }}>
+              <h5 className="mb-4 d-block" style={{ fontWeight: 900, letterSpacing: '-1px' }}>
+                Descreva de forma curta e objetiva<br/>
+                seu produto e características...
+              </h5>
+              <Form.Control
+                as="textarea"
+                placeholder="ex.: O produto x é indicado para uso nos seguintes casos, produzido com os ingredientes x, y e z e para quem deseja tal resultado."
+                rows={5}
+                className="p-3"
+                value={userInput}
+                maxLength={250}
+                onChange={onUserChangedText}>
+              </Form.Control>
+              <div className="d-flex" style={{ justifyContent: 'space-between', alignItems: 'center', marginTop: '.25em' }}>
+                <strong className="m-0 p-0 text-muted" style={{ fontSize: '13px', fontWeight: 900 }}>{userInput.length||0}/250</strong>
+                <Button size="sm" variant="success" className={isGenerating ? 'py-2 px-4 mt-2 loading' : 'py-2 px-4 mt-2'} onClick={callGenerateEndpoint}>
+                  {isGenerating ? <span className="loader"></span> : <>Gerar Copy!</>}
+                </Button>
+              </div>
+            </Col>
+            {apiOutput && (<>
+              <hr className="my-5" />
+              <Col sm={12} md={12} lg={12}>
+                <h3 style={{ fontWeight: 900, letterSpacing: '-.5px', fontSize: '22px' }}>Resultado:</h3>
+                <div className="output-content">
+                  <p>{apiOutput}</p>
+                </div>
+              </Col>
+              <Col sm={12} md={12} lg={12} className="mt-4 text-muted">
+                <Button size="sm" variant="outline-success" className="px-3" onClick={()=> copyToClipboard()}>
+                  <FontAwesomeIcon icon={faCopy} className="mx-1" /> Copiar 
+                </Button>{/*&nbsp;&nbsp;&nbsp;
+                <Button size="sm" variant="outline-success" className="px-3">
+                  <FontAwesomeIcon icon={faShareAlt} className="mx-1" /> Compartilhar 
+                </Button>*/}
+              </Col>
+            </>)}
+          </Row>
+        </Container>
+      </Container>
       {/* SIDE USER */}
       <Offcanvas id="side_user" placement="end" show={showSideuser} onHide={()=> setShowSideuser(!showSideuser)}>
         <Offcanvas.Header className="p-4" closeButton />
@@ -362,12 +431,11 @@ const Home = () => {
         </Offcanvas.Body>
       </Offcanvas>
       <Modal centered size="lg" show={modalPlans} onHide={()=> {
-          setStepModal(0)
-          setIdPix(null)
-          setModalPlans(false)
-          setStatusPix(false)
-        }}
-      >
+        setStepModal(0)
+        setIdPix(null)
+        setModalPlans(false)
+        setStatusPix(false)
+      }}>
         <Modal.Header closeButton>
           <Modal.Title>Adquirir Créditos</Modal.Title>
         </Modal.Header>
