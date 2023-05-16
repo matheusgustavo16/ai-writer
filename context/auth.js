@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext, useEffect, SetStateAction, 
 import Cookies from 'js-cookie'
 import { Magic } from "magic-sdk";
 
-import Api from '../services/Api';
+import Api from '/services/Api';
 import axios from 'axios';
 import { fetchDataFromApi } from '../utils/api';
 
