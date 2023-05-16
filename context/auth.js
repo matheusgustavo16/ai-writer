@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 import { Magic } from "magic-sdk";
 import { fetchDataFromApi } from '../utils/api';
 
-const MAGIC_PUBLIC_KEY = process.env.NEXT_PUBLIC_MAGIC_PUBLIC_KEY || `pk_live_AE129A38C69F5B9A`
+const MAGIC_PUBLIC_KEY = process.env.NEXT_PUBLIC_MAGIC_PUBLIC_KEY || `pk_live_7AD445C4519595C4`
 const AuthContext = createContext({});
 let magic;
 
