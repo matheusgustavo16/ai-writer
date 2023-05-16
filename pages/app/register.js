@@ -14,8 +14,7 @@ const Register = () => {
             <input type="email" placeholder="Nome Completo" className="w-full border-2 rounded-md p-2 text-sm outline-none focus:border-gray-400 transition duration-300 ease-in-out" />
             <input type="email" placeholder="WhatsApp" className="w-full border-2 rounded-md p-2 text-sm outline-none focus:border-gray-400 transition duration-300 ease-in-out" />
             <input type="email" placeholder="E-mail" className="w-full border-2 rounded-md p-2 text-sm outline-none focus:border-gray-400 transition duration-300 ease-in-out" />
-            <input type="password" placeholder="Senha" className="w-full border-2 rounded-md p-2 text-sm outline-none focus:border-gray-400 transition duration-300 ease-in-out" />
-            <button className="w-full p-2 border-2 rounded-md px-4 text-sm bg-[#26FF7C] hover:border-[#129c49] transition duration-300 ease-in-out">Cadastrar</button>
+            <button disabled className="w-full p-2 border-2 rounded-md px-4 text-sm disabled:opacity-25 disabled:cursor-not-allowed bg-[#26FF7C] hover:border-[#129c49] transition duration-300 ease-in-out">Cadastrar</button>
         </div>
     </>)
 }
