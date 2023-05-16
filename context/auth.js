@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
             const verifica = await fetchDataFromApi(`verify_email`, {
                 email: email
             })
-            console.log('loginOrRegister', verifica) 
+            console.log('loginOrRegister', verifica)
             if(verifica){
                 setUser({ ...user, ...verifica })
             }
