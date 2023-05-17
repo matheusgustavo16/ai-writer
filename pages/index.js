@@ -177,19 +177,6 @@ const Home = () => {
     return initials
   }
 
-  const submitForm = async() => {
-    const resp_login = await login(form?.email, form?.senha)
-    if(!resp_login){
-        toast.error('⚠️ Email e/ou Senha Incorretos.');
-    }else{
-        setForm({
-            ...form,
-            email: '',
-            senha: ''
-        })
-    }
-  }
-
   const [idPix, setIdPix] = useState(null)
   const [codigoPix, setCodigoPix] = useState(null)
   const [statusPix, setStatusPix] = useState(false)
@@ -280,87 +267,6 @@ const Home = () => {
       <Plans />
       <Footer />
       {/* SIDE USER */}
-      <Offcanvas id="side_user" placement="end" show={showSideuser} onHide={()=> setShowSideuser(!showSideuser)}>
-        <Offcanvas.Header className="p-4" closeButton />
-        <Offcanvas.Body>
-          {!isAuthenticated && <Container>
-              <Row className="mt-0">
-                  <Col md={12}>
-                      <Offcanvas.Title style={{ fontWeight: 700 }}>{!showRegister ? `Faça Login` : `Cadastre-se`}</Offcanvas.Title>
-                  </Col>
-                  <Col md={12} className="mt-4">
-                    {!showRegister && <>
-                      <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>E-mail</Form.Label>
-                        <Form.Control type="email" name="email" value={form?.email} onChange={(e)=> setForm({ ...form, [e.target.name]: e.target.value })} placeholder="" />
-                      </Form.Group>
-                      <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Senha</Form.Label>
-                        <Form.Control type="password" name="senha" value={form?.senha} onChange={(e)=> setForm({ ...form, [e.target.name]: e.target.value })} placeholder="" />
-                      </Form.Group>
-                      <div className="d-flex" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Button variant="outline-success" onClick={()=> submitForm()} className="px-4">
-                          Entrar
-                        </Button>
-                        <a href="javascript:;" onClick={()=> setShowRegister(!showRegister)}>Cadastre-se e Teste Grátis</a>
-                      </div>
-                    </>}
-                    {showRegister && <Form onSubmit={submitForm}>
-                      <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Nome Completo</Form.Label>
-                        <Form.Control type="text" placeholder="" />
-                      </Form.Group>
-                      <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>WhatsApp</Form.Label>
-                        <Form.Control type="text" placeholder="" />
-                      </Form.Group>
-                      <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>E-mail</Form.Label>
-                        <Form.Control type="email" placeholder="" />
-                      </Form.Group>
-                      <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Senha</Form.Label>
-                        <Form.Control type="password" placeholder="" />
-                      </Form.Group>
-                      <div className="d-flex" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Button variant="outline-success" type="submit" className="px-4">
-                          Cadastrar
-                        </Button>
-                        <a href="javascript:;" onClick={()=> setShowRegister(!showRegister)}>Voltar ao Login</a>
-                      </div>
-                    </Form>}
-                  </Col>
-              </Row>
-          </Container>}
-          {isAuthenticated && <>
-            <Container>
-                <Row className="mt-0">
-                    <Col md={12}>
-                        <Offcanvas.Title style={{ fontWeight: 700 }}>Bem-Vindo(a) {user?.nome ? user?.nome.split(' ')[0] : ``}<em style={{ fontWeight: 800, marginLeft: '-2px' }}>!</em></Offcanvas.Title>
-                    </Col>
-                    <Col md={12} className="mt-2">
-                      <hr />
-                      <h5 className="my-3">Histórico de Requisições</h5>
-                      <ul className="m-0 p-0" style={{ listStyle: 'none', maxHeight: '60vh', overflowY: 'auto' }}>
-                      {user?.historico && user?.historico.map((historic, key) => <li key={key} className="d-flex mb-4" style={{ justifyContent: 'space-between', alignItems: 'center', paddingRight: '.5em' }}>
-                        <div className="m-0 p-0 text-left" style={{ fontSize: '13px', fontWeight: 600 }}>
-                          <small className="m-0 p-0 d-block text-muted" style={{ fontSize: '12px', fontWeight: 600 }}>{new Date(historic?.dt_created).toLocaleString('pt-br')}</small>
-                          <span title="Prompt" className="d-block m-0 p-0 text-muted">{historic?.prompt.substring(0,40)}...</span>
-                          <span title="Resultado" className="d-block m-0 p-0 text-primary">{historic?.result.substring(0,40)}...</span>
-                        </div>
-                        <span title="Tokens Descontados" className="m-0 p-0 text-danger" style={{ fontSize: '15px', fontWeight: 800 }}>-{historic?.discounted}</span>
-                      </li>)}
-                      </ul>
-                    </Col>
-                </Row>
-            </Container>
-            <Button variant="outline-danger" onClick={()=> logout()} className="d-block text-center py-2" style={{ position: 'absolute', bottom: '1.5em', width: '90%' }}>
-              <FontAwesomeIcon icon={faSignOut} />&nbsp;
-              Deslogar
-            </Button>
-          </>}
-        </Offcanvas.Body>
-      </Offcanvas>
       <Modal centered size="lg" show={modalPlans} onHide={()=> {
           setStepModal(0)
           setIdPix(null)

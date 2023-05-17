@@ -76,9 +76,9 @@ export const AuthProvider = ({ children }) => {
             //console.log('tokenLogin', tokenLogin)
             if(tokenLogin){
                 Cookies.set('cpyonline_token', tokenLogin, { expires: 60 })
+                await loginOrRegister(email)
                 //window.localStorage.setItem(`cpyonline_token`, tokenLogin)
             }
-            setUser({ email })
             setLoading(false)
             //router.push(`/`)
         }catch(err){
