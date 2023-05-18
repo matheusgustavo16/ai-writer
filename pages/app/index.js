@@ -23,7 +23,7 @@ const AppPage = () => {
             <title>Dashboard | Copy Online</title>
         </Head>
         {!loading && <LayoutDash>
-            <div className="flex items-center justify-between shadow-md py-2 mb-4 rounded-lg text-white bg-gradient-to-l from-purple-600 to-purple-700">
+            <div className="flex items-center justify-between select-none shadow-md py-2 mb-4 rounded-lg text-white bg-gradient-to-l from-purple-600 to-purple-700">
                 <div className="pl-6">
                     <h3 className="flex justify-start items-center gap-2 font-medium text-2xl">
                         <Crown size={24} className="text-[#26FF7C]" /> Seja Premium
