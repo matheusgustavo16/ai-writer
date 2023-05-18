@@ -22,7 +22,7 @@ export default async function (req, res) {
     model: 'text-davinci-003',
     prompt: `${basePromptPrefix}${req.body.userInput}\n`,
     temperature: 0.7,
-    max_tokens: 150,
+    max_tokens: 50,
   }, {
     timeout: 120000
   })
