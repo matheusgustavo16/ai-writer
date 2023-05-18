@@ -43,7 +43,7 @@ const AppPage = () => {
                                     <div>
                                         <p className="mb-0 font-sans font-semibold leading-normal text-sm">Meus Tokens</p>
                                         <h5 className="mb-0 font-bold">
-                                            {user?.balance}
+                                            {user?.balance||0}
                                         </h5>
                                     </div>
                                 </div>
