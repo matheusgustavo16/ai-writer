@@ -16,7 +16,7 @@ const Hero = () => {
 
     return (<>
         <div className="w-full text-center flex flex-col justify-center items-center pt-24">
-            <h1 className="max-w-md font-bold text-6xl">Crie copys incríveis em segundos</h1>
+            <h1 className="max-w-md font-bold text-5xl md:text-6xl">Crie copys incríveis em segundos</h1>
             <span className="max-w-lg mt-3 text-gray-400">Utilizando o poder da Inteligência Artificial, você pode gerar conteúdo de alta qualidade de forma rápida e eficiente.</span>
             <div className="mt-10 flex gap-5 items-center text-sm">
                 <Link href={`#free-test`} onClick={handleScroll} className="bg-[#26FF7C] p-3 px-4 rounded-md flex justify-between items-center gap-3 text-sm group hover:bg-green-400 transition duration-300 ease-in-out">

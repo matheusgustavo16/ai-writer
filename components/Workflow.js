@@ -22,7 +22,7 @@ const Workflow = () => {
     }
 
     return (<>
-        <div id="applications" className="w-full max-w-7xl my-36 m-auto">
+        <div id="applications" className="w-full max-w-7xl my-36 m-auto px-5 md:px-0">
             <h2 className="text-5xl md:max-w-md font-light">Inclua a IA no seu workflow e seja mais produtivo</h2>
             <div className="flex flex-wrap justify-between items-start mt-10">
                 <div className="md:w-1/2 flex flex-col gap-4">
@@ -60,14 +60,14 @@ const Workflow = () => {
             </div>
         </div>
         <div id="free-test" className="bg-[url('/assets/bg-free-test.png')] bg-center w-full py-24">
-            <div className="w-full max-w-7xl m-auto flex flex-wrap justify-between items-center">
+            <div className="w-full max-w-7xl m-auto flex flex-wrap  gap-5 md:gap-0 justify-between items-center px-5 md:px-0">
                 <div>
                     <h4 className="text-4xl font-semibold">Teste Grátis</h4>
                     <p className="text-[#138941] font-medium text-xl">Cadastre-se e ganhe 5000 Tokens Grátis.</p>
                 </div>
                 <div>
                     <div className="bg-white flex justify-between items-center p-1 rounded-md">
-                        <input placeholder="seuemail@gmail.com" onChange={(e)=> setEmail(e?.target?.value)} className="p-2 px-3 outline-none border-none text-sm min-w-[300px]" />
+                        <input placeholder="seuemail@gmail.com" onChange={(e)=> setEmail(e?.target?.value)} className="p-2 px-3 outline-none border-none text-sm md:min-w-[300px]" />
                         <button onClick={()=> handleTest()} className="bg-[#26FF7C] rounded-md p-2 px-4 text-xs font-medium hover:bg-[#129c49] hover:text-white transition duration-300 ease-in-out">Testar Grátis</button>
                     </div>
                 </div>

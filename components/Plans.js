@@ -20,7 +20,7 @@ const Plans = ({ plans }) => {
   }
 
   return (<>
-      <div id="plans" className="w-full max-w-7xl my-24 m-auto text-center">
+      <div id="plans" className="w-full max-w-7xl my-24 m-auto text-center px-5 md:px-0">
           <h1 className="w-full text-center text-5xl font-bold">Torne-se Premium</h1>
           <div className="max-w-lg text-gray-500 m-auto mt-2">
               Com menos de 10 reais por mês você consegue gerar aproximadamente 10 copys exclusivas e únicas.

@@ -39,7 +39,7 @@ const Header = () => {
                 <div className="flex justify-center sm:justify-start">
                     <Link href={`/`}><Image src={`/assets/copy-online-logo.svg`} width={423/3} height={40/3} alt={`copy online logo`} className="select-none" /></Link>
                 </div>
-                <ul className="text-center justify-center items-center flex md:py-0">
+                <ul className="text-center justify-center items-center flex py-5 md:py-0">
                     <li><Link href="#about" onClick={handleScroll} className="text-black no-underline hover:border-b-2 hover:border-[#26FF7C] p-2 px-3 rounded-xs text-sm transition duration-300 ease-in-out">Sobre</Link></li>
                     <li><Link href="#applications" onClick={handleScroll} className="text-black no-underline hover:border-b-2 hover:border-[#26FF7C] p-2 px-3 rounded-xs text-sm transition duration-300 ease-in-out">Aplicações</Link></li>
                     <li><Link href="#free-test" onClick={handleScroll} className="text-black no-underline hover:border-b-2 hover:border-[#26FF7C] p-2 px-3 rounded-xs text-sm transition duration-300 ease-in-out">Teste Grátis</Link></li>
