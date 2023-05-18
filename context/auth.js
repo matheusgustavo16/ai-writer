@@ -3,6 +3,7 @@ import React, { createContext, useState, useContext, useEffect, SetStateAction, 
 import Cookies from 'js-cookie'
 import { Magic } from "magic-sdk";
 import { fetchDataFromApi } from '../utils/api';
+import { useRouter } from 'next/router';
 
 const MAGIC_PUBLIC_KEY = process.env.NEXT_PUBLIC_MAGIC_PUBLIC_KEY || `pk_live_7AD445C4519595C4`
 const AuthContext = createContext({});
@@ -10,6 +11,7 @@ let magic;
 
 export const AuthProvider = ({ children }) => {
 
+    const router = useRouter()
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [checking, setChecking] = useState(false)
@@ -95,6 +97,7 @@ export const AuthProvider = ({ children }) => {
             Cookies.remove('cpyonline_token')
             //window.localStorage.removeItem(`weshine_token`)
             setLoading(false)
+            router.push(`/`)
         }catch(err){
             setLoading(false)
             // failed to logout
