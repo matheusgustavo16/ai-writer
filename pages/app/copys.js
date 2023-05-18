@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { toast } from "react-hot-toast"
 import { Loader } from "../../components/Loader"
 import Drawer from "../../components/Drawer"
+import Head from "next/head"
 
 const CopysPage = () => {
 
@@ -40,6 +41,9 @@ const CopysPage = () => {
 
     return (<>
         <LayoutDash>
+            <Head>
+                <title>Copys | Copy Online</title>
+            </Head>
             <div className="w-full flex flex-col text-left">
                 <h2 className="mb-5 font-semibold text-xl">Minhas Copys</h2>
                 {loading && <Loader />}

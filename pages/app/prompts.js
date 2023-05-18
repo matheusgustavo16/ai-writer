@@ -1,8 +1,12 @@
+import Head from "next/head"
 import LayoutDash from "../../components/LayoutDash"
 
 const PromptsPage = () => {
     return (<>
         <LayoutDash>
+            <Head>
+                <title>Prompts | Copy Online</title>
+            </Head>
             <div className="w-full flex flex-col text-left">
                 <h2 className="mb-5 font-semibold text-xl">Meus Prompts</h2>
             </div>

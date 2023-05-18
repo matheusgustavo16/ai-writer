@@ -6,6 +6,7 @@ import HeaderApp from "../../components/HeaderApp"
 import Image from "next/image"
 import LayoutDash from "../../components/LayoutDash"
 import { Bot, Crown, DollarSign, Text } from "lucide-react"
+import Head from "next/head"
 
 const AppPage = () => {
     const { isAuthenticated, user, loading } = useAuth()
@@ -13,12 +14,14 @@ const AppPage = () => {
 
     useEffect(()=>{
         if(!isAuthenticated){
-            router.push(`/app/login`)
+            router.push(`/app`)
         }
     }, [isAuthenticated])
 
     return (<>
-
+        <Head>
+            <title>Dashboard | Copy Online</title>
+        </Head>
         {!loading && <LayoutDash>
             <div className="flex items-center justify-between shadow-md py-2 mb-4 rounded-lg text-white bg-gradient-to-l from-purple-600 to-purple-700">
                 <div className="pl-6">

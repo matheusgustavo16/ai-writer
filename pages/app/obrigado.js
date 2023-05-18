@@ -1,10 +1,14 @@
 import { Bot, CheckCircle } from "lucide-react"
 import LayoutDash from "../../components/LayoutDash"
 import Link from "next/link"
+import Head from "next/head"
 
 const ObrigadoPage = () => {
     return (<>
         <LayoutDash>
+            <Head>
+                <title>Obrigado | Copy Online</title>
+            </Head>
             <div className="w-full flex flex-col gap-1 justify-center items-center py-24">
                 <CheckCircle size={42} color="#26FF7C" />
                 <h2 className="text-2xl">Obrigado por estar conosco!</h2>

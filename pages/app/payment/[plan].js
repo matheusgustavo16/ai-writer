@@ -148,12 +148,6 @@ const PaymentPage = ({ plan: plan_data }) => {
         }
     }, [codigoPix,idPix,statusPix])
 
-    useEffect(()=>{
-        if(user?.id){
-            //fatureTransaction()
-        }
-    }, [user])
-
     const fatureTransaction = async(statusTransaction) => {
         try{
             const new_transaction = await updateDataFromApi(`new_transaction`, {
@@ -174,20 +168,18 @@ const PaymentPage = ({ plan: plan_data }) => {
         //console.log(new_transaction)
     }
 
-    const checkFakePixStatus = async(id_transaction) => {
-        fatureTransaction(`PAID`)
-    }
-
     const checkPixStatus = async(id_transaction) => {
-        mercadoPago
-        .get(`v1/payments/${id_transaction}`)
-        .then(response => {
-            console.log('checkPixStatus_', response)
-            if (response.data.status === "approved") {
-                setStatusPix(true)
-                fatureTransaction(response.data.status)
-            }
-        })
+        if(codigoPix && idPix){
+            mercadoPago
+            .get(`v1/payments/${id_transaction}`)
+            .then(response => {
+                console.log('checkPixStatus_', response)
+                if (response.data.status === "approved") {
+                    setStatusPix(true)
+                    fatureTransaction(response.data.status)
+                }
+            })
+        }
     }
 
     const generatePix = async() => {

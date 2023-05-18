@@ -3,6 +3,7 @@ import LayoutDash from "../../components/LayoutDash"
 import { useRouter } from "next/router"
 import { fetchDataFromApi } from "../../utils/api"
 import Link from "next/link"
+import Head from "next/head"
 
 const _planos = [
     {
@@ -57,6 +58,9 @@ const WalletPage = ({ planos }) => {
   const router = useRouter()
   return (<>
       <LayoutDash>
+          <Head>
+              <title>Planos | Copy Online</title>
+          </Head>
           <div className="w-full flex flex-col text-left">
               <h2 className="font-semibold text-xl">Adicionar Créditos</h2>
           </div>
