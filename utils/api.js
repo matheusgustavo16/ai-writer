@@ -10,9 +10,6 @@ export const fetchDataFromApi = async(endpoint, _options = false) => {
 
     const options = !_options ? {
         method: 'GET',
-        headers: {
-            "Content-Type": "application/json",
-        },
         //headers: { Authorization: `Bearer ${STRAPI_API_TOKEN}` }
     } : {
         method: 'POST',
