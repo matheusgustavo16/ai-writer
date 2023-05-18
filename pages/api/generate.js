@@ -23,6 +23,8 @@ export default async function (req, res) {
     prompt: `${basePromptPrefix}${req.body.userInput}\n`,
     temperature: 0.7,
     max_tokens: 350,
+  }, {
+    timeout: 120000
   })
   .catch((Err)=> {
     res.status(500).json({ error: Err })
