@@ -26,16 +26,13 @@ export const fetchDataFromApi = async(endpoint, _options = false) => {
 }
 
 export const updateDataFromApi = async(endpoint, _options) => {
-    const form = new FormData();
-    if(_options){
-        _options.map((opt) => form.append(opt?.key, opt?.value))
-    }
     const options = {
-        method: 'PUT',
+        method: 'POST',
         headers: {
-            Authorization: `Bearer ${STRAPI_API_TOKEN}`
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${`WwogIHsKICAgICJ0eXAiIDogIkpXVCIsCiAgICAiYWxnIiA6ICJIUzI1NiIKICB9Cl0.WwogIHsKICAgICJhZ2UiIDogNTUsCiAgICAibmFtZSIgOiAiSmltbXkiLAogICAgIlRpdGxlIiA6ICJOaWNlIgogIH0KXQ.AhlqiFIcS-ytUKnhazsn7-eYNwgmXfwON7EN2gozRAw`}`
         },
-        body: form
+        body: JSON.stringify(_options)
     }
     const res = await fetch(`${API_URL}${endpoint}`, options);
     const data = await res.json();

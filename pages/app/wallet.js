@@ -1,8 +1,10 @@
 import { Check } from "lucide-react"
 import LayoutDash from "../../components/LayoutDash"
 import { useRouter } from "next/router"
+import { fetchDataFromApi } from "../../utils/api"
+import Link from "next/link"
 
-const planos = [
+const _planos = [
     {
       id: 1,
       name: `Starter`,
@@ -51,7 +53,7 @@ const planos = [
     },
 ]
 
-const WalletPage = () => {
+const WalletPage = ({ planos }) => {
   const router = useRouter()
   return (<>
       <LayoutDash>
@@ -67,16 +69,28 @@ const WalletPage = () => {
                       </span>
                       <span className="uppercase text-md text-gray-400 mb-2">pacote {plan?.name}</span>
                       <ul className="mb-5">
-                          {plan?.desc.map((desc)=> <li className="flex gap-1 text-xs text-left items-center">
+                          {plan?.descr.split(',').map((desc)=> <li className="flex gap-1 text-xs text-left items-center">
                               <Check size={16} color="#26FF7C" /> {desc}
                           </li>)}
                       </ul>
-                      <button onClick={()=> router.push(`/app/payment/${plan?.id}`)} className="bg-[#26FF7C] hover:bg-[#129c49] hover:text-white rounded-md p-2 font-medium transition duration-300 ease-in-out">Contratar Plano</button>
+                      <Link href={`/app/payment/${plan?.id}`} className="bg-[#26FF7C] flex justify-center items-center hover:bg-[#129c49] hover:text-white rounded-md p-2 font-medium transition duration-300 ease-in-out">Contratar Plano</Link>
                   </li>
               </>)}
           </ul>
       </LayoutDash>
   </>)
 }
+
+export async function getStaticProps(context) {
+  const planos = await fetchDataFromApi(`get_plans`)
+  //console.log('planos', planos)
+  
+  return {
+      props: {
+        planos
+      }
+  }
+}
+
 
 export default WalletPage

@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
             const verifica = await fetchDataFromApi(`verify_email`, {
                 email: email
             })
-            console.log('loginOrRegister', verifica)
+            //console.log('loginOrRegister', verifica)
             if(verifica){
                 setUser({ ...user, ...verifica })
             }
@@ -101,6 +101,16 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const getFreshBalance = async() => {
+        if(user?.id){
+            const balance = await fetchDataFromApi(`get_balance/${user?.id}`)
+            //console.log('loginOrRegister', verifica)
+            if(balance){
+                setUser({ ...user, balance: balance })
+            }
+        }
+    }
+
     const updateBalance = async(new_amount, id_user, prompt, result, discounted) => {
         /*const token = Cookies.get('cpyonline_token')
         const { data: data_res } = await Api.post('/update_balance', {
@@ -134,7 +144,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated: !!user, user, setUser, magicAuth, magicLogout, login, logout, updateBalance, addBalance, loading, setLoading }}>
+        <AuthContext.Provider value={{ isAuthenticated: !!user, user, setUser, getFreshBalance, magicAuth, magicLogout, login, logout, updateBalance, addBalance, loading, setLoading }}>
             {children}
         </AuthContext.Provider>
     )

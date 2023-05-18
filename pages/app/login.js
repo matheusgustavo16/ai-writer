@@ -44,22 +44,19 @@ const LoginPage = () => {
     useEffect(()=>{
         if(isAuthenticated){
             router.push(`/app`)
-        }else{
-            router.push(`/`)
         }
     }, [isAuthenticated])
     
     return (<>
         <Head>
-            <title>Login | Copy Online</title>
+            <title>Autenticando | Copy Online</title>
         </Head>
-        {loading && <Loader />}
-        {!loading && <div className="bg-white shadow-md rounded-md p-6 w-full max-w-sm m-auto mt-24 flex flex-col justify-between items-center gap-1">
+        <Loader />
+        {/*!loading && <div className="bg-white shadow-md rounded-md p-6 w-full max-w-sm m-auto mt-24 flex flex-col justify-between items-center gap-1">
             <Link href={`/`}><Image src={`/assets/copy-online-logo.svg`} width={423/3} height={40/3} alt={`copy online logo`} className="select-none mt-2 mb-4" /></Link>
             <h1 className="font-semibold mt-5">Já tenha uma conta</h1>
             <p className="text-center text-xs mb-5 text-gray-600">Caso ainda não tenha, <Link href={`/app/register`} className="underline hover:font-bold">clique aqui</Link> e cadastre-se</p>
             <input disabled={loading} type="email" name="email" onChange={(e)=> setFormLogin({ ...formLogin, email: e?.target?.value })} placeholder="E-mail" className="w-full disabled:opacity-25 border-2 rounded-md p-2 text-sm outline-none focus:border-gray-400 transition duration-300 ease-in-out" />
-            {/*<input disabled={loading} type="password" name="senha" onChange={(e)=> setFormLogin({ ...formLogin, senha: e?.target?.value })} placeholder="Senha" className="w-full disabled:opacity-25 border-2 rounded-md p-2 text-sm outline-none focus:border-gray-400 transition duration-300 ease-in-out" />*/}
             <button disabled={loading} onClick={()=> handleLogin()} className="w-full flex justify-center items-center gap-2 p-2 border-2 rounded-md px-4 text-sm bg-[#26FF7C] hover:border-[#129c49] disabled:cursor-not-allowed transition duration-300 ease-in-out">
                 Entrar
                 {loading && <div role="status">
@@ -70,7 +67,7 @@ const LoginPage = () => {
                     <span class="sr-only">Loading...</span>
                 </div>}
             </button>
-        </div>}
+        </div>*/}
         <Toaster position="top-right" />
     </>)
 }

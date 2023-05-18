@@ -8,7 +8,7 @@ export default function Document() {
         <meta property="og:description" content="Utilizando o poder da Inteligência Artificial, você pode gerar conteúdo de alta qualidade de forma rápida e eficiente." key="description"/>
         <meta
           property="og:image"
-          content="https://cdn.buildspace.so/courses/gpt3-writer/project-og.jpg"
+          content="https://i.imgur.com/EdhKBo9.jpg"
         />
         <meta name="twitter:card" content="summary_large_image"></meta>
       </Head>

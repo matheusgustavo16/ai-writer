@@ -1,20 +1,32 @@
 import Image from 'next/image';
 import { Award, Bot, Check, ChevronRight, ClipboardCheck } from 'lucide-react';
+import Link from 'next/link';
 
 const Hero = () => {
+
+    const handleScroll = (e) => {
+        e.preventDefault();
+        const href = e.currentTarget.href;
+        const targetId = href.replace(/.*\#/, "");
+        const elem = document.getElementById(targetId);
+        elem?.scrollIntoView({
+          behavior: "smooth",
+        });
+    };
+
     return (<>
         <div className="w-full text-center flex flex-col justify-center items-center pt-24">
             <h1 className="max-w-md font-bold text-6xl">Crie copys incríveis em segundos</h1>
             <span className="max-w-lg mt-3 text-gray-400">Utilizando o poder da Inteligência Artificial, você pode gerar conteúdo de alta qualidade de forma rápida e eficiente.</span>
-            <div className="mt-10 flex gap-5">
-                <button className="bg-[#26FF7C] p-3 px-4 rounded-md flex justify-between items-center gap-3 text-sm group hover:bg-green-400 transition duration-300 ease-in-out">
+            <div className="mt-10 flex gap-5 items-center text-sm">
+                <Link href={`#free-test`} onClick={handleScroll} className="bg-[#26FF7C] p-3 px-4 rounded-md flex justify-between items-center gap-3 text-sm group hover:bg-green-400 transition duration-300 ease-in-out">
                     <span className="font-medium">Teste Grátis</span>
                     <span className="w-5 h-5 rounded-full flex justify-center items-center bg-black text-white transition duration-300 ease-in-out"><ChevronRight size={14} /></span>
-                </button>
-                <button className="opacity-30 hover:opacity-100 transition duration-300 ease-in-out">Planos Premium</button>
+                </Link>
+                <Link href={`#plans`} onClick={handleScroll} className="opacity-30 hover:opacity-100 font-semibold transition duration-300 ease-in-out">Planos Premium</Link>
             </div>
             <Image src={`/assets/default-dashboard.png`} width={1246/1.5} height={725/1.5} alt='default dashboard' className="mt-24 mb-2" />
-            <div className="flex justify-between items-center gap-1 md:gap-14 text-sm mb-24">
+            <div id="about" className="flex justify-between items-center gap-1 md:gap-14 text-sm mb-24">
                 <div className="flex items-center gap-1 font-medium">
                     <Check size={19} color="#26FF7C" /> Não precisa cadastrar cartão
                 </div>
