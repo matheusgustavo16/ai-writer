@@ -8,6 +8,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const basePromptPrefix = "Criar uma copy de vendas de 2 a 3 parágrafos, de forma objetiva e descritiva, baseado em-";
+
 export default async function (req, res) {
   /*res.status(200).json({ 
     output: {
@@ -22,7 +23,7 @@ export default async function (req, res) {
     model: 'text-davinci-003',
     prompt: `${basePromptPrefix}${req.body.userInput}\n`,
     temperature: 0.7,
-    max_tokens: 50,
+    max_tokens: 350,
   }, {
     timeout: 120000
   })
