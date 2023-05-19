@@ -110,11 +110,16 @@ const GeneratePage = () => {
           setApiOutput((prev) => prev + chunkValue);
         }
 
-        getFreshBalance()
-        setUsageTokens(_tokenizer||0)
         setIsGenerating(false);
       }
     };
+
+    useEffect(()=>{
+      if(!isGenerating && apiOutput){
+        setUsageTokens(tokenizer.encode(`${basePromptPrefix}${userInput}`).bpe.length+tokenizer.encode(`${apiOutput}`).bpe.length)
+        getFreshBalance()
+      }
+    }, [apiOutput, isGenerating])
 
     const copyToClipboard = () => {
       navigator.clipboard.writeText(apiOutput)
@@ -144,6 +149,12 @@ const GeneratePage = () => {
                     </button>
                 </div>
                 <div className="w-full flex flex-col">
+                    {isGenerating && <>
+                        <div className="text-sm h-full px-24 text-gray-500 text-center flex flex-col gap-3 justify-center items-center">
+                            <Bot size={72} className="text-gray-400" />
+                            <Loader mini />
+                        </div>
+                    </>}
                     {apiOutput && apiOutput
                       .split("2.")
                       .map((generatedCopy) => {
@@ -153,7 +164,7 @@ const GeneratePage = () => {
                           </div>
                           <div className="flex justify-between items-center">
                               <div className="text-sm text-gray-400 ml-3 select-none cursor-not-allowed hover:text-gray-600">
-                                  {usageTokens||0} tokens foram utilizados
+                                  {isGenerating ? `...` : usageTokens} tokens foram utilizados
                               </div>
                               <button onClick={()=> copyToClipboard()} className="flex justify-center select-none items-center gap-1 m-3 bg-[#26FF7C] hover:bg-[#129c49] hover:text-white rounded-md p-2 px-4 font-medium transition duration-300 ease-in-out">
                                   <Copy size={16} /> Copiar
@@ -179,13 +190,6 @@ const GeneratePage = () => {
                             <Bot size={72} className="text-gray-400" />
                             <p>Utilize o campo de texto ao lado para descrever da melhor forma o seu produto/serviço.</p>
                             <p>Você poderá acessar o seu histórico futuramente.</p>
-                        </div>
-                    </>}
-                    {isGenerating && <>
-                        <div className="text-sm h-full px-24 text-gray-500 text-center flex flex-col gap-3 justify-center items-center">
-                            <Bot size={72} className="text-gray-400" />
-                            <p className="mb-5">iniciando a conversa com o nosso bot...</p>
-                            <Loader mini />
                         </div>
                     </>}
                 </div>
