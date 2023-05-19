@@ -12,7 +12,7 @@ const tokenizer = new GPT3Tokenizer({ type: 'gpt3' });
 const GeneratePage = () => {
 
     const inputRef = useRef()
-    const { user, getFreshBalance } = useAuth()
+    const { user, loading, getFreshBalance } = useAuth()
     const [isGenerating, setIsGenerating] = useState(false)
 
     const [userInput, setUserInput] = useState('')
@@ -20,7 +20,6 @@ const GeneratePage = () => {
     const [usageTokens, setUsageTokens] = useState(0)
 
     const basePromptPrefix = "Criar uma copy de vendas de 2 a 3 parágrafos, de forma objetiva e descritiva, baseado em-";
-    const _tokenizer = apiOutput ? (tokenizer.encode(`${basePromptPrefix}${userInput}`).bpe.length+tokenizer.encode(`${apiOutput}`).bpe.length)*3 : 0;
 
     const callGenerateEndpoint = async () => {
       if(!user){
@@ -134,7 +133,8 @@ const GeneratePage = () => {
             <div className="w-full flex flex-col text-left">
                 <h2 className="mb-5 font-semibold text-xl">Gerador de Copys</h2>
             </div>
-            <div className="w-full flex justify-between items-start gap-4">
+            {loading && <Loader />}
+            {!loading && <div className="w-full flex justify-between items-start gap-4">
                 <div className="w-full">
                     <h5 className="font-medium">
                         Descreva de forma curta e objetiva seu produto e características...
@@ -164,7 +164,7 @@ const GeneratePage = () => {
                           </div>
                           <div className="flex justify-between items-center">
                               <div className="text-sm text-gray-400 ml-3 select-none cursor-not-allowed hover:text-gray-600">
-                                  {isGenerating ? `...` : usageTokens} tokens foram utilizados
+                                  {isGenerating ? `` : `${usageTokens} tokens foram utilizados`}
                               </div>
                               <button onClick={()=> copyToClipboard()} className="flex justify-center select-none items-center gap-1 m-3 bg-[#26FF7C] hover:bg-[#129c49] hover:text-white rounded-md p-2 px-4 font-medium transition duration-300 ease-in-out">
                                   <Copy size={16} /> Copiar
@@ -193,7 +193,7 @@ const GeneratePage = () => {
                         </div>
                     </>}
                 </div>
-            </div>
+            </div>}
         </LayoutDash>
     </>)
 }
