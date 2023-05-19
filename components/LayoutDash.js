@@ -69,7 +69,7 @@ const LayoutDash = ({ children }) => {
                             <div className="flex gap-3 items-center">
                                 <Link href={`/app/wallet`} className="flex items-center gap-1 font-bold text-green-500 hover:bg-[#26FF7C] hover:text-black transition duration-300 ease-in-out p-1 px-2 rounded-md">
                                     <Wallet size={16} className="text-black" />
-                                    {parseFloat(user?.balance)}
+                                    {parseFloat(user?.balance)||`...`}
                                 </Link>
                                 <button onClick={()=> setOpenUser(!openUser)} type="button" className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                                     <span className="sr-only">Open user menu</span>

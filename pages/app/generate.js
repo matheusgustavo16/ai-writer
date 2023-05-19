@@ -65,6 +65,8 @@ const GeneratePage = () => {
         toast.error(`Sessão expirada, faça login e tente novamente!`)
       }else if(user?.balance <= 0){
         toast.error(`Compre créditos e crie suas copys à vontade!`)
+      }else if(user?.balance < (tokenizer.encode(`${basePromptPrefix}${userInput}`).bpe.length)*3){
+        toast.error(`Seu saldo já não é mais suficiente para fazer requisições!`)
       }else{
         if(userInput.trim().length === 0){
           toast.error(`Descreva de forma curta e objetiva seu produto e características na caixa de texto...`)
