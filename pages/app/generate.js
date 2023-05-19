@@ -73,6 +73,7 @@ const GeneratePage = () => {
           return 
         }
         e.preventDefault();
+        setUsageTokens(0);
         setApiOutput("");
         setIsGenerating(true);
         const response = await fetch("/api/generate", {
@@ -82,7 +83,9 @@ const GeneratePage = () => {
           },
           body: JSON.stringify({
             id_user: user?.id,
-            prompt: `${basePromptPrefix}${userInput}`,
+            content: `${basePromptPrefix}${userInput}`,
+            prompt: basePromptPrefix,
+            command: userInput
           }),
         });
     
@@ -105,16 +108,6 @@ const GeneratePage = () => {
           done = doneReading;
           const chunkValue = decoder.decode(value);
           setApiOutput((prev) => prev + chunkValue);
-        }
-        
-        if(_tokenizer && user){
-          await updateDataFromApi(`discount_tokens`, {
-            id_user: user?.id,
-            tokens: _tokenizer,
-            prompt: basePromptPrefix,
-            command: userInput,
-            result: apiOutput
-          })
         }
 
         getFreshBalance()
