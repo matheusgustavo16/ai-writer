@@ -17,7 +17,7 @@ const LayoutDash = ({ children }) => {
     return (<>
         
         {openUser && <div onClick={()=> setOpenUser(!openUser)} className="fixed z-40 bg-black w-full h-screen opacity-50 transition-transform">&nbsp;</div>}
-        <div class={`fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform ${!openUser && `translate-x-full`} bg-white w-80 dark:bg-gray-800 pt-20`}>
+        <div className={`fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform ${!openUser && `translate-x-full`} bg-white w-80 dark:bg-gray-800 pt-20`}>
             
             <div class="p-3">
                 <div class="flex items-center justify-between mb-2">
