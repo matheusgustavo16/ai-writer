@@ -12,9 +12,9 @@ const Home = ({ planos }) => {
   return (
     <div className="root">
       <Head>
-        <title>Copy Online - Crie copys incríveis em segundos - Teste Grátis</title>
-        <meta name="description" content="Utilizando o poder da Inteligência Artificial, você pode gerar conteúdo de alta qualidade de forma rápida e eficiente. Cadastre-se agora e teste grátis com 5000 Tokens iniciais." />
-        <meta name="keywords" content="copys, criar, texto, criação, gpt, tokens" />
+        <title>Copy Online - Crie copys incríveis em segundos - Braip</title>
+        <meta name="description" content="Afilie-se já e venda um software que Utilizando o poder da Inteligência Artificial, você pode gerar conteúdo de alta qualidade de forma rápida e eficiente. Cadastre-se agora e teste grátis com 5000 Tokens iniciais." />
+        <meta name="keywords" content="copys, criar, texto, criação, gpt, tokens, braip, afiliados" />
       </Head>
       <Header />
       <Hero />
