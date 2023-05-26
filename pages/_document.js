@@ -5,7 +5,7 @@ export default function Document() {
     <Html>
       <Head>
         <meta property="og:title" content="Copy Online" key="title"/>
-        <meta property="og:description" content="Utilizando o poder da Inteligência Artificial, você pode gerar conteúdo de alta qualidade de forma rápida e eficiente." key="description"/>
+        <meta property="og:description" content="Utilizando o poder da Inteligência Artificial, você pode gerar copys e conteúdos de alta qualidade de forma rápida e eficiente, teste grátis já." key="description"/>
         <meta
           property="og:image"
           content="https://i.imgur.com/EdhKBo9.jpg"

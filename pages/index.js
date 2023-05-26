@@ -12,7 +12,7 @@ const Home = ({ planos }) => {
   return (
     <div className="root">
       <Head>
-        <title>Copy Online - Crie copys incríveis em segundos</title>
+        <title>Copy Online - Crie copys incríveis em segundos - Teste Grátis</title>
         <meta name="description" content="Utilizando o poder da Inteligência Artificial, você pode gerar conteúdo de alta qualidade de forma rápida e eficiente." />
       </Head>
       <Header />

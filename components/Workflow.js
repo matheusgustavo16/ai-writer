@@ -55,7 +55,7 @@ const Workflow = () => {
                     </div>
                 </div>
                 <div className="">
-                    <Image src={`/assets/example-socialmedia.png`} width={514} height={486} alt="" />
+                    <Image src={`/assets/example-socialmedia.png`} width={514} height={486} alt="social media example" />
                 </div>
             </div>
         </div>
