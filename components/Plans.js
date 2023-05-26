@@ -41,7 +41,8 @@ const Plans = ({ plans }) => {
                         </li>)}
                     </ul>
                     {isBraipURL && plan?.url_braip && <Link href={`${plan?.url_braip}`} className="bg-[#26FF7C] hover:bg-[#129c49] hover:text-white text-center rounded-md p-2 font-medium transition duration-300 ease-in-out">Contratar Plano</Link>}
-                    {!isBraipURL && <button onClick={()=> handleBill(plan?.id)} className="bg-[#26FF7C] hover:bg-[#129c49] hover:text-white rounded-md p-2 font-medium transition duration-300 ease-in-out">Contratar Plano</button>}
+                    {/*!isBraipURL && <button onClick={()=> handleBill(plan?.id)} className="bg-[#26FF7C] hover:bg-[#129c49] hover:text-white rounded-md p-2 font-medium transition duration-300 ease-in-out">Contratar Plano</button>*/}
+                    {!isBraipURL && plan?.url_kiwify && <Link href={`${plan?.url_kiwify}`} className="bg-[#26FF7C] hover:bg-[#129c49] hover:text-white text-center rounded-md p-2 font-medium transition duration-300 ease-in-out">Contratar Plano</Link>}
                 </li>
             </>)}
         </ul>
