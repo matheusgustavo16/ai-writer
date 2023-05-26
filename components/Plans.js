@@ -10,7 +10,7 @@ import Link from "next/link"
 const Plans = ({ plans }) => {
 
   const router = useRouter()
-  const { isAuthenticated, loading, magicAuth } = useAuth()
+  const { isAuthenticated, loading, magicAuth } = useAuth() 
   const isBraipURL = router.pathname === '/braip'
 
   const handleBill = (idPlan) => {
