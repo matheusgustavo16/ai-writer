@@ -149,7 +149,7 @@ const PaymentPage = ({ plan: plan_data }) => {
                 setCodigoPix(null)
                 setModalPix(false)
                 router.push(`/app/obrigado`)
-            }, 3000)
+            }, 5000)
           }
         }
     }, [codigoPix,idPix,statusPix])
