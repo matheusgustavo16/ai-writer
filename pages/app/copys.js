@@ -26,7 +26,7 @@ const CopysPage = () => {
     const getCopys = async() => {
         try{
             setLoading(true)
-            const _copys = await fetchDataFromApi(`get_copys/${user?.id}`)
+            const _copys = await fetchDataFromApi(`get_copys/${user?.id}/10`)
             if(_copys){
                 setList(_copys)
             }
