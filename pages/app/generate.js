@@ -7,13 +7,21 @@ import { Loader } from "../../components/Loader"
 import Head from "next/head"
 import GPT3Tokenizer from 'gpt3-tokenizer';
 import { updateDataFromApi } from "../../utils/api"
+import { useRouter } from "next/router"
 const tokenizer = new GPT3Tokenizer({ type: 'gpt3' });
 
 const GeneratePage = () => {
 
     const inputRef = useRef()
-    const { user, loading, getFreshBalance } = useAuth()
+    const router = useRouter()
+    const { isAuthenticated, user, loading, getFreshBalance } = useAuth()
     const [isGenerating, setIsGenerating] = useState(false)
+
+    useEffect(()=>{
+        if(!isAuthenticated){
+            router.push(`/`)
+        }
+    }, [isAuthenticated])
 
     const [userInput, setUserInput] = useState('')
     const [apiOutput, setApiOutput] = useState('')

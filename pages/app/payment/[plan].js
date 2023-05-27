@@ -29,11 +29,17 @@ mercadoPago.interceptors.request.use(async config => {
 const PaymentPage = ({ plan: plan_data }) => {
 
     const router = useRouter()
-    const { user, getFreshBalance } = useAuth()
+    const { isAuthenticated, user, getFreshBalance } = useAuth()
 
     const [validCpf, setValidCpf] = useState(false)
     const [modalPix, setModalPix] = useState(false)
     const [document, setDocument] = useState('')
+
+    useEffect(()=>{
+        if(!isAuthenticated){
+            router.push(`/`)
+        }
+    }, [isAuthenticated])
     
     const handlePayment = async() => {
         setModalPix(true)

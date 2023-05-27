@@ -44,11 +44,11 @@ const Hero = () => {
                 </div>
                 <div className="text-left">
                     <h4 className="flex font-medium"><Bot className="mr-3" /> 2. Teste Grátis</h4>
-                    <p className="text-sm pl-9 mt-3 text-gray-400">Você faz o seu cadastro grátis, e ganha alguns tokens para testar a plataformas e criar as suas primeiras copys.</p>
+                    <p className="text-sm pl-9 mt-3 text-gray-400">Antes de pagar qualquer valor, você pode se cadastrar grátis e ganhar 5000 Tokens para testar como quiser.</p>
                 </div>
                 <div className="text-left">
                     <h4 className="flex font-medium"><Award className="mr-3" /> 3. Torne-se Premium</h4>
-                    <p className="text-sm pl-9 mt-3 text-gray-400">Você faz o seu cadastro grátis, e ganha alguns tokens para testar a plataformas e criar as suas primeiras copys.</p>
+                    <p className="text-sm pl-9 mt-3 text-gray-400">No plano PRO você poderá ter um contato direto com a inteligência artificial através do gerenciamento de Prompts.</p>
                 </div>
             </div>
         </div>
