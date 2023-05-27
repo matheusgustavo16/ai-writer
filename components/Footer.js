@@ -29,7 +29,7 @@ const Footer = () => {
                 <div>
                     <div className="flex justify-between items-center p-1 rounded-md text-gray-400">
                         <p>&copy; 2023 - CopyOnline.com.br - Todos os Direitos Reservados<br/>
-                        copyonline@proton.me<br/>Uma solução West Side Co.{/*<br/>CNPJ 00.00000.00-00/00*/}</p>
+                        Suporte: copyonline@proton.me<br/><br/>Uma solução West Side Co.{/*<br/>CNPJ 00.00000.00-00/00*/}</p>
                     </div>
                 </div>
                 <Image src={`/assets/copy-online-logo-footer.svg`} width={423/2} height={40/2} alt={`copy online logo`} className="select-none" />
