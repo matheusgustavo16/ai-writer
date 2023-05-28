@@ -14,7 +14,7 @@ const ObrigadoPage = () => {
                 Os seus créditos foram adicionados à sua conta.<br/>
                 Você já pode acessar o nosso Gerador de Copys e começar a criar!
             </p>
-            <Link href={`/app`} className="p-2 border-2 rounded-md px-4 text-sm flex items-center justify-center gap-2 bg-[#26FF7C] border-[#129c49] hover:bg-green-400  transition duration-300 ease-in-out">
+            <Link href={`/`} className="p-2 border-2 rounded-md px-4 text-sm flex items-center justify-center gap-2 bg-[#26FF7C] border-[#129c49] hover:bg-green-400  transition duration-300 ease-in-out">
                 <Bot size={14} /> Ir Para a Plataforma
             </Link>
             {/*<Link href={`/app/account`} className="text-xs mt-3 text-gray-400">acessar minhas transações</Link>*/}
