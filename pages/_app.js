@@ -7,6 +7,7 @@ import * as gtag from '../lib/gtag'
 import Analytics from '../components/Analytics';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import JivoChat from '../components/JivoChat';
 
 function App({Component, pageProps}) {
 
@@ -26,6 +27,7 @@ function App({Component, pageProps}) {
     <AuthProvider>
       <NextNProgress color="#26FF7C" />
       <Component {...pageProps} />
+      <JivoChat />
       <Analytics />
     </AuthProvider>
   </>)
