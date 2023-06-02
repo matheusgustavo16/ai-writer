@@ -44,7 +44,7 @@ const Hero = () => {
                 </div>
                 <div className="text-left">
                     <h4 className="flex font-medium"><Bot className="mr-3" /> 2. Teste Grátis</h4>
-                    <p className="text-sm pl-9 mt-3 text-gray-400">Antes de pagar qualquer valor, você pode se cadastrar grátis e ganhar 5000 Tokens para testar como quiser.</p>
+                    <p className="text-sm pl-9 mt-3 text-gray-400">Antes de pagar qualquer valor, você pode se cadastrar grátis e ganhar 2000 Tokens para testar como quiser.</p>
                 </div>
                 <div className="text-left">
                     <h4 className="flex font-medium"><Award className="mr-3" /> 3. Torne-se Premium</h4>

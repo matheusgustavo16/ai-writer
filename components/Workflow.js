@@ -64,7 +64,7 @@ const Workflow = () => {
                 <div>
                     <h3 className="text-4xl uppercase select-none font-extrabold leading-8 mb-12">Pronto Para o<br/>Próximo Nível ?</h3>
                     <h4 className="text-2xl font-semibold">Cadastre-se e Teste Grátis</h4>
-                    <p className="text-gray-500 font-light text-xl">Ganhe 5000 Tokens para Usar.</p>
+                    <p className="text-gray-500 font-light text-xl">Ganhe 2000 Tokens para Usar.</p>
                 </div>
                 <div className="mt-6">
                     <div className="bg-white flex justify-between items-center p-1 rounded-md">
@@ -78,7 +78,7 @@ const Workflow = () => {
             <div className="w-full max-w-7xl m-auto flex flex-wrap  gap-5 md:gap-0 justify-between items-center px-5 md:px-0">
                 <div>
                     <h4 className="text-4xl font-semibold">Teste Grátis</h4>
-                    <p className="text-[#138941] font-medium text-xl">Cadastre-se e ganhe 5000 Tokens Grátis.</p>
+                    <p className="text-[#138941] font-medium text-xl">Cadastre-se e ganhe 2000 Tokens Grátis.</p>
                 </div>
                 <div>
                     <div className="bg-white flex justify-between items-center p-1 rounded-md">

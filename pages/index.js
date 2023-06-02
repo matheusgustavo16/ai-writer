@@ -13,7 +13,7 @@ const Home = ({ planos }) => {
     <div className="root">
       <Head>
         <title>Copy Online - Crie copys incríveis em segundos - Teste Grátis</title>
-        <meta name="description" content="Utilizando o poder da Inteligência Artificial, você pode gerar conteúdo de alta qualidade de forma rápida e eficiente. Cadastre-se agora e teste grátis com 5000 Tokens iniciais." />
+        <meta name="description" content="Utilizando o poder da Inteligência Artificial, você pode gerar conteúdo de alta qualidade de forma rápida e eficiente. Cadastre-se agora e teste grátis com 2000 Tokens iniciais." />
         <meta name="keywords" content="copys, criar, texto, criação, gpt, tokens" />
       </Head>
       <Header />
