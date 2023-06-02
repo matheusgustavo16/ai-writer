@@ -16,13 +16,7 @@ const GeneratePage = () => {
     const router = useRouter()
     const { isAuthenticated, user, loading, getFreshBalance } = useAuth()
     const [isGenerating, setIsGenerating] = useState(false)
-
-    useEffect(()=>{
-        if(!isAuthenticated){
-            router.push(`/`)
-        }
-    }, [isAuthenticated])
-
+    
     const [userInput, setUserInput] = useState('')
     const [apiOutput, setApiOutput] = useState('')
     const [usageTokens, setUsageTokens] = useState(0)
@@ -144,7 +138,7 @@ const GeneratePage = () => {
                 <h2 className="mb-5 font-semibold text-xl">Gerador de Copys</h2>
             </div>
             {loading && <Loader />}
-            {!loading && <div className="w-full flex justify-between items-start gap-4">
+            {!loading && <div className="w-full flex flex-col md:flex-row justify-between items-start gap-4">
                 <div className="w-full">
                     <h5 className="font-medium">
                         Descreva de forma curta e objetiva seu produto e características...

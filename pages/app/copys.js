@@ -10,29 +10,29 @@ import Head from "next/head"
 
 const CopysPage = () => {
 
-    const { user } = useAuth()
+    const { loading, user, isAuthenticated } = useAuth()
 
     const [detailed, setDetailed] = useState({})
     const [seeDetail, setSeeDetail] = useState(false)
-    const [loading, setLoading] = useState(true)
+    const [loadingCopys, setLoadingCopys] = useState(true)
     const [list, setList] = useState([])
 
     useEffect(()=>{
-        if(user){
+        if(!loading && user){
             getCopys()
         }
-    }, [user])
+    }, [loading, user])
 
     const getCopys = async() => {
         try{
-            setLoading(true)
-            const _copys = await fetchDataFromApi(`get_copys/${user?.id}/10`)
+            setLoadingCopys(true)
+            const _copys = await fetchDataFromApi(`get_copys/${user?.id}`)
             if(_copys){
                 setList(_copys)
             }
-            setLoading(false)
+            setLoadingCopys(false)
         }catch(err){
-            setLoading(false)
+            setLoadingCopys(false)
             console.log('falhafaturar', err)
             toast.error(`Falha ao resgatar as suas copys.`)
         }
@@ -46,7 +46,7 @@ const CopysPage = () => {
             </Head>
             <div className="w-full flex flex-col text-left">
                 <h2 className="mb-5 font-semibold text-xl">Minhas Copys</h2>
-                {loading && <Loader />}
+                {loadingCopys && <Loader />}
                 <table className="table w-full text-sm">
                     <thead>
                         <tr className="text-xs text-gray-400 uppercase">

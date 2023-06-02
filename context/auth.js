@@ -33,9 +33,21 @@ export const AuthProvider = ({ children }) => {
             const { email } = await magic.user.getMetadata();
             setUser({ email })
             await loginOrRegister(email)
+            setChecking(false)
+            setLoading(false)
+        }else{
+            const url = router.pathname
+            if(url.includes('/app')){
+                router.push(`/`)
+                    .then(()=> {
+                        setChecking(false)
+                        setLoading(false)
+                    })
+            }else{
+                setChecking(false)
+                setLoading(false)
+            }
         }
-        setLoading(false)
-        setChecking(false)
     }
 
     const loginOrRegister = async(email) => {

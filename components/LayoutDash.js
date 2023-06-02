@@ -5,11 +5,12 @@ import { useRouter } from "next/router"
 import { useState } from "react"
 import { useAuth } from "../context/auth"
 import { Toaster } from "react-hot-toast"
+import { Loader } from "./Loader"
 
 const LayoutDash = ({ children }) => {
 
     const router = useRouter()
-    const { logout, user, magicLogout } = useAuth()
+    const { loading, user, magicLogout } = useAuth()
 
     const [open, setOpen] = useState(false)
     const [openUser, setOpenUser] = useState(false)
@@ -61,14 +62,15 @@ const LayoutDash = ({ children }) => {
                             </svg>
                         </button>
                         <a href="/app" className="flex ml-2 md:mr-24">
-                            <Image src="/assets/copy-online-logo.svg" width={140} height={45} className="h-8 mr-3" alt="Copy Online Logo" />
+                            <Image src="/assets/copy-online-logo.svg" width={140} height={45} className="h-8 mr-3 block dark:hidden" alt="Copy Online Logo" />
+                            <Image src="/assets/copy-online-logo-white.svg" width={140} height={45} className="h-8 mr-3 hidden dark:block" alt="Copy Online Logo" />
                         </a>
                     </div>
                     <div className="flex items-center">
-                        <div className="flex items-center ml-3">
+                        {!loading && <div className="flex items-center ml-3">
                             <div className="flex gap-3 items-center">
-                                <Link href={`/app/wallet`} className="flex items-center gap-1 font-bold text-green-500 hover:bg-[#26FF7C] hover:text-black transition duration-300 ease-in-out p-1 px-2 rounded-md">
-                                    <Wallet size={16} className="text-black" />
+                                <Link href={`/app/wallet`} className="flex items-center group gap-1 font-bold text-green-500 hover:bg-[#26FF7C] hover:text-black transition duration-300 ease-in-out p-1 px-2 rounded-md">
+                                    <Wallet size={16} className="text-black dark:text-white group-hover:dark:text-black transition duration-300 ease-in-out" />
                                     {parseFloat(user?.balance)||`...`}
                                 </Link>
                                 <button onClick={()=> setOpenUser(!openUser)} type="button" className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
@@ -76,7 +78,8 @@ const LayoutDash = ({ children }) => {
                                     <Image className="w-8 h-8 rounded-full" width={8} height={8} src="/assets/no-photo.png" alt="user photo" />
                                 </button>
                             </div>
-                        </div>
+                        </div>}
+                        {loading && <Loader mini />}
                     </div>
                 </div>
             </div>
@@ -84,7 +87,7 @@ const LayoutDash = ({ children }) => {
 
         {open && <div onClick={()=> setOpen(!open)} className="fixed z-30 bg-black w-full h-screen opacity-50">&nbsp;</div>}
         <aside id="logo-sidebar" className={`fixed top-0 left-0 z-30 w-64 h-screen pt-20 transition-transform ${!open && `-translate-x-full`} bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`} aria-label="Sidebar">
-            <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+            {!loading && <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
                 <ul className="space-y-2 font-medium">
                     <li>
                         <Link href="/app/" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -127,12 +130,14 @@ const LayoutDash = ({ children }) => {
                         </button>
                     </li>
                 </ul>
-            </div>
+            </div>}
+            {loading && <Loader />}
         </aside>
 
         <div className="p-4 sm:ml-64">
-            <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-                {children}
+            <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-300 mt-14">
+                {!loading && children}
+                {loading && <Loader />}
             </div>
         </div>
 

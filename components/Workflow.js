@@ -27,7 +27,7 @@ const Workflow = () => {
             <div className="flex flex-wrap justify-between items-start mt-10">
                 <div className="md:w-1/2 flex flex-col gap-4">
                     <div className="border-b-2 border-gray-300 pb-4">
-                        <div className="flex justify-between items-center" onClick={()=> setTab('copys')}>
+                        <div className="flex justify-between items-center cursor-pointer" onClick={()=> setTab('copys')}>
                             <h3 className="font-semibold mr-5">Criação de Copys de Vendas</h3>
                             <ChevronRight />
                         </div>
@@ -36,7 +36,7 @@ const Workflow = () => {
                         </div>}
                     </div>
                     <div className="border-b-2 border-gray-300 pb-4">
-                        <div className="flex justify-between items-center" onClick={()=> setTab('redes-sociais')}>
+                        <div className="flex justify-between items-center cursor-pointer" onClick={()=> setTab('redes-sociais')}>
                             <h3 className="font-semibold mr-5">Criação de Copys para Redes Sociais</h3>
                             <ChevronRight />
                         </div>
@@ -45,7 +45,7 @@ const Workflow = () => {
                         </div>}
                     </div>
                     <div className="border-b-2 border-gray-300 pb-4">
-                        <div className="flex justify-between items-center" onClick={()=> setTab('videos')}>
+                        <div className="flex justify-between items-center cursor-pointer" onClick={()=> setTab('videos')}>
                             <h3 className="font-semibold mr-5">Criação de Copys de Vídeos</h3>
                             <ChevronRight />
                         </div>

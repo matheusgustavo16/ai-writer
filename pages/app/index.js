@@ -15,10 +15,10 @@ import Drawer from "../../components/Drawer"
 const AppPage = () => {
     
     const router = useRouter()
-    const { isAuthenticated, user } = useAuth()
+    const { loading, user } = useAuth()
     const [detailed, setDetailed] = useState({})
     const [seeDetail, setSeeDetail] = useState(false)
-    const [loading, setLoading] = useState(false)
+    const [loadingCopys, setLoadingCopys] = useState(false)
     const [listCopys, setListCopys] = useState([])
 
     useEffect(()=>{
@@ -29,14 +29,14 @@ const AppPage = () => {
 
     const getCopys = async() => {
         try{
-            setLoading(true)
+            setLoadingCopys(true)
             const _copys = await fetchDataFromApi(`get_copys/${user?.id}`)
             if(_copys){
                 setListCopys(_copys)
             }
-            setLoading(false)
+            setLoadingCopys(false)
         }catch(err){
-            setLoading(false)
+            setLoadingCopys(false)
             console.log('falhafaturar', err)
             toast.error(`Falha ao resgatar as suas copys.`)
         }
@@ -111,7 +111,7 @@ const AppPage = () => {
                 <div className="grid grid-cols-2 gap-4 mb-4">
                     <div className="flex flex-col items-center justify-center rounded bg-gray-100 p-4">
                         <h2 className="w-full text-left font-semibold mb-3">Minhas Últimas Copys</h2>
-                        {loading && <Loader />}
+                        {loadingCopys && <Loader />}
                         {listCopys.length<=0 && <div className="text-center text-sm flex flex-col justify-center items-center py-5 gap-2">
                             <Bot size={48} />
                             <p className="text-gray-400 font-medium select-none px-12">Não perca tempo, coloque os seus créditos e comece a usufruir do que a inteligência artificial pode te trazer.</p>
