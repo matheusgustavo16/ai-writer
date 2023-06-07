@@ -50,19 +50,29 @@ const AppPage = () => {
         <LayoutDash>
             {loading && <Loader />}
             {!loading && <>
-                <div className="flex items-center justify-between select-none shadow-md py-2 mb-4 rounded-lg text-white bg-gradient-to-l from-purple-600 to-purple-700">
-                    <div className="pl-6">
-                        <h3 className="flex justify-start items-center gap-2 font-medium text-2xl">
-                            <Crown size={24} className="text-[#26FF7C]" /> Seja Premium
-                        </h3>
-                        <p className="text-sm mt-1">E tenha acesso à funcionalidades que podem mudar a forma como você trabalha.</p>
-                    </div>
-                    {/*<div>
-                        <button>Contratar!</button>
-                    </div>*/}
-                    <div className="pr-6">
-                        <Image src={`/assets/copy-bot.png`} width={100} height={100} alt={`copy bot`} />
-                    </div>
+                <div className={`flex items-center justify-between select-none shadow-md py-2 mb-4 rounded-lg text-white bg-gradient-to-l ${!user?.pro ? `from-purple-600 to-purple-700` : `from-purple-600 to-green-500`}`}>
+                    {user?.pro && <>
+                        <div className="pl-6">
+                            <h3 className="flex justify-start items-center gap-2 font-medium text-2xl">
+                                <Crown size={24} className="text-yellow-300" /> Conta Premium
+                            </h3>
+                            <p className="text-sm mt-1">Sua conta premium tem expiração em {new Date(user?.pro_expire).toLocaleDateString('pt-br')}.</p>
+                        </div>
+                        <div className="pr-6">
+                            <Image src={`/assets/copy-bot.png`} width={100} height={100} alt={`copy bot`} />
+                        </div>
+                    </>}
+                    {!user?.pro && <>
+                        <div className="pl-6">
+                            <h3 className="flex justify-start items-center gap-2 font-medium text-2xl">
+                                <Crown size={24} className="text-[#26FF7C]" /> Seja Premium
+                            </h3>
+                            <p className="text-sm mt-1">E tenha acesso à funcionalidades que podem mudar a forma como você trabalha.</p>
+                        </div>
+                        <div className="pr-6">
+                            <Image src={`/assets/copy-bot.png`} width={100} height={100} alt={`copy bot`} />
+                        </div>
+                    </>}
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-4">
                     <div className="flex items-center justify-center h-24 rounded bg-gray-100">

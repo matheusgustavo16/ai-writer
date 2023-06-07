@@ -26,6 +26,7 @@ const Plans = ({ plans }) => {
         <h3 className="w-full text-center text-5xl font-bold">Torne-se Premium</h3>
         <div className="max-w-lg text-gray-500 m-auto mt-2">
             Com menos de 10 reais por mês você consegue gerar aproximadamente 10 copys exclusivas e únicas.
+            {isBraipURL && <><br/>Seu produto será entregue diretamente via e-mail.</>}
         </div>
         <ul className="grid md:grid-cols-4 xs:grid-rows-4 gap-4 m-auto text-left items-center md:justify-between sm:justify-between mt-12">
             {plans.map((plan, i)=> <>

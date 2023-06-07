@@ -5,9 +5,9 @@ import { useAuth } from "../../context/auth"
 import { Bot, Copy } from "lucide-react"
 import { Loader } from "../../components/Loader"
 import Head from "next/head"
+import { fetchDataFromApi, updateDataFromApi } from "../../utils/api"
+import { useRouter } from "next/navigation"
 import GPT3Tokenizer from 'gpt3-tokenizer';
-import { updateDataFromApi } from "../../utils/api"
-import { useRouter } from "next/router"
 const tokenizer = new GPT3Tokenizer({ type: 'gpt3' });
 
 const GeneratePage = () => {
@@ -20,6 +20,10 @@ const GeneratePage = () => {
     const [userInput, setUserInput] = useState('')
     const [apiOutput, setApiOutput] = useState('')
     const [usageTokens, setUsageTokens] = useState(0)
+
+    const [listPrompts, setListPrompts] = useState([])
+    const [selectPrompt, setSelectPrompt] = useState('basePromptPrefix')
+    const selectedPrompt = listPrompts.filter((p) => p?.id == selectPrompt)[0]||{}
 
     const basePromptPrefix = "Criar uma copy de vendas de 2 a 3 parágrafos, de forma objetiva e descritiva, baseado em-";
 
@@ -86,8 +90,8 @@ const GeneratePage = () => {
           },
           body: JSON.stringify({
             id_user: user?.id,
-            content: `${basePromptPrefix}${userInput}`,
-            prompt: basePromptPrefix,
+            content: `${selectPrompt === 'basePromptPrefix' ? basePromptPrefix : selectedPrompt?.prompt}${userInput}`,
+            prompt: selectPrompt === 'basePromptPrefix' ? basePromptPrefix : selectedPrompt?.prompt,
             command: userInput
           }),
         });
@@ -129,6 +133,35 @@ const GeneratePage = () => {
       toast.success(`O texto gerado foi copiado para o seu CTRL+V`)
     }
 
+    useEffect(()=>{
+        if(!loading && user && user?.pro){
+            getPrompts()
+        }
+    }, [loading, user])
+
+    const getPrompts = async() => {
+        try{
+            const _copys = await fetchDataFromApi(`get_prompts/${user?.id}`)
+            if(_copys){
+              setListPrompts(_copys)
+            }
+        }catch(err){
+            console.log('falhafaturar', err)
+            toast.error(`Falha ao resgatar seus prompts.`)
+        }
+    }
+
+    useEffect(()=>{
+      if(typeof window !== undefined && listPrompts.length>=1){
+        const query = window.location.search.replace('?prompt=', '')
+        if(query){
+          const selectedPrompt = listPrompts.filter((p) => p?.share_link == query)
+          //console.log('selectedPrompt', selectedPrompt[0].share_link)
+          setSelectPrompt(selectedPrompt ? selectedPrompt[0].id : `basePromptPrefix`)
+        }
+      }
+    }, [listPrompts])
+
     return (<>
         <Head>
           <title>Gerador de Copys | Copy Online</title>
@@ -140,7 +173,16 @@ const GeneratePage = () => {
             {loading && <Loader />}
             {!loading && <div className="w-full flex flex-col md:flex-row justify-between items-start gap-4">
                 <div className="w-full">
-                    <h5 className="font-medium">
+                    {user?.pro && <>
+                      <div className="">
+                        <select placeholder="Selecione o Prompt Desejado" value={selectPrompt} onChange={(e)=> setSelectPrompt(e?.target?.value)} className="w-full text-sm p-2 outline-none border-2 rounded-md focus:border-green-500">
+                          <option value={`basePromptPrefix`}>PROMPT: Padrão CopyOnline</option>
+                          {listPrompts.map((prompt)=> <option value={prompt?.id} key={prompt?.id}>PROMPT: {prompt?.title}</option>)}
+                        </select>
+                      </div>
+                      {selectPrompt !== 'basePromptPrefix' && <small className="select-none text-gray-400">"{selectedPrompt?.prompt}"</small>}
+                    </>}
+                    <h5 className={`font-medium ${user?.pro ? `mt-5`:``}`}>
                         Descreva de forma curta e objetiva seu produto e características...
                     </h5>
                     <textarea ref={inputRef} className="w-full my-2 p-3 text-sm border-2 rounded-md focus:border-[#26FF7C] outline-none transition duration-300 ease-in-out" onChange={(e)=> setUserInput(e?.target?.value)} rows={6} placeholder="ex.: O produto x é indicado para uso nos seguintes casos, produzido com os ingredientes x, y e z e para quem deseja tal resultado."></textarea>

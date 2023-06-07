@@ -33,7 +33,7 @@ const PaymentPage = ({ plan: plan_data }) => {
 
     const [validCpf, setValidCpf] = useState(false)
     const [modalPix, setModalPix] = useState(false)
-    const [document, setDocument] = useState('')
+    const [document, setDocument] = useState(user?.document||'')
 
     useEffect(()=>{
         if(!isAuthenticated){

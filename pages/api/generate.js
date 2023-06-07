@@ -24,11 +24,11 @@ const handler = async (req) => {
     openai: {
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: content }],
-      temperature: 0.7,
+      temperature: 0.5,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
-      max_tokens: 250,
+      max_tokens: 600,
       stream: true,
       n: 1,
     }
