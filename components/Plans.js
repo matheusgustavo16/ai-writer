@@ -33,7 +33,7 @@ const Plans = ({ plans }) => {
                 <li className="flex flex-col bg-white shadow-lg w-full border p-5 rounded-md">
                     <span className="uppercase font-semibold mb-12">{plan?.name}</span>
                     <span className="font-semibold text-3xl mb-10 flex items-center gap-1">
-                        R$ {parseFloat(plan?.amount).toLocaleString('pt-br', { minimumFractionDigits: 2 })}
+                        R$ {parseFloat(plan?.amount).toLocaleString('pt-br', { minimumFractionDigits: 2 })} 
                     </span>
                     <span className="uppercase text-md text-gray-400 mb-2">pacote {plan?.name}</span>
                     <ul className="mb-5">
